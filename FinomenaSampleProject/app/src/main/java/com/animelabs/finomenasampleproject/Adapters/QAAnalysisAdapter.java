@@ -53,8 +53,8 @@ public class QAAnalysisAdapter extends RecyclerView.Adapter<QAAnalysisAdapter.My
         public MyViewHolder(View itemView) {
             super(itemView);
             question = (TextView)itemView.findViewById(R.id.textView4);
-            userRes = (TextView)itemView.findViewById(R.id.textView5);
-            answer = (TextView)itemView.findViewById(R.id.textView6);
+            userRes = (TextView)itemView.findViewById(R.id.textView6);
+            answer = (TextView)itemView.findViewById(R.id.textView5);
             imageView = (ImageView)itemView.findViewById(R.id.imageView5);
         }
     }
