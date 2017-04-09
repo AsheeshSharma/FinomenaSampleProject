@@ -48,7 +48,7 @@ public class GraphAnalysisFragment extends Fragment {
         View view = inflater.inflate(R.layout.graph_view_layout,container, false);
 
 
-        BarChart chart = (BarChart) view.findViewById(R.id.chart);
+        final BarChart chart = (BarChart) view.findViewById(R.id.chart);
         analysisButton = (Button)view.findViewById(R.id.analyseQuestion);
 
         chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(getXAxisValues()));
@@ -65,7 +65,8 @@ public class GraphAnalysisFragment extends Fragment {
         analysisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QuestionAnalysisFragment questionAnalysisFragment = new QuestionAnalysisFragment(context);
+                QuestionAnalysisFragment questionAnalysisFragment = new QuestionAnalysisFragment();
+                questionAnalysisFragment.setContext(context);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(QuestionAnalysisFragment.KEY_NAME, questionAnalysisModels);
                 questionAnalysisFragment.setArguments(bundle);
@@ -75,17 +76,15 @@ public class GraphAnalysisFragment extends Fragment {
         return view;
     }
 
-    public GraphAnalysisFragment(Context context){
-        this.context = context;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new DatabaseHelper(getActivity().getApplicationContext());
         questionAnalysisModels = new ArrayList<>();
     }
-
+    public void setContext(Context context){
+        this.context = context;
+    }
     private ArrayList<IBarDataSet> getDataSet() {
         ArrayList<IBarDataSet> dataSets = null;
 

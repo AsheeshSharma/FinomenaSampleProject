@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,18 +43,21 @@ public class QuestionPageFragment extends Fragment implements View.OnClickListen
     public QuestionPageFragment(){
 
     }
-    public QuestionPageFragment(CustomViewPager viewPager, DatabaseHelper db, Context context){
-        this.mViewPager =viewPager;
-        this.db = db;
-        this.context = context;
-    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         questionItemModel = (QuestionItemModel)bundle.getSerializable(KEY);
     }
-
+    public void setViewPager(CustomViewPager fm){
+        this.mViewPager = fm;
+    }
+    public void setDBHelper(DatabaseHelper db){
+        this.db = db;
+    }
+    public void setContext(Context context){
+        this.context = context;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -98,7 +102,8 @@ public class QuestionPageFragment extends Fragment implements View.OnClickListen
                     mViewPager.setCurrentItem(questionItemModel.getmQuestionID());
                 else {
                     SharedPrefUtility.addBoolean(context, true);
-                    GraphAnalysisFragment graphAnalysisFragment = new GraphAnalysisFragment(context);
+                    GraphAnalysisFragment graphAnalysisFragment = new GraphAnalysisFragment();
+                    graphAnalysisFragment.setContext(context);
                     ((QuestionPagerActivity)context).changeFragment(graphAnalysisFragment);
                 }
             }

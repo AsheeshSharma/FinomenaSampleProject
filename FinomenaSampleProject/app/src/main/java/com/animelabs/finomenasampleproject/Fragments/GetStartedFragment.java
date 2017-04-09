@@ -41,7 +41,9 @@ public class GetStartedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(editText.getText().toString().trim()) && editText.getText().toString().trim() != null && editText.getText().toString().trim() != ""){
-                    HomeFragment homeFragment = new HomeFragment(context, fm);
+                    HomeFragment homeFragment = new HomeFragment();
+                    homeFragment.setContext(context);
+                    homeFragment.setFragmentManager(fm);
                     ((QuestionPagerActivity)context).changeFragment(homeFragment);
                 }else {
                     Snackbar snackbar = Snackbar.make(view, "Enter a valid value", Snackbar.LENGTH_SHORT);
@@ -52,8 +54,11 @@ public class GetStartedFragment extends Fragment {
         return view;
     }
 
-    public GetStartedFragment(Context context, FragmentManager fm){
-        this.context = context;
+    public void setFragmentManager(FragmentManager fm){
         this.fm = fm;
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 }

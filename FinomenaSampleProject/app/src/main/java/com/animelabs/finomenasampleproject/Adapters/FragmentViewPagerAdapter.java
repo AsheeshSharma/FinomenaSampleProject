@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 
 import com.animelabs.finomenasampleproject.Database.DatabaseHelper;
 import com.animelabs.finomenasampleproject.Fragments.QuestionPageFragment;
@@ -39,7 +38,10 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        QuestionPageFragment questionPageFragment = new QuestionPageFragment(mCustomViewPager, db, context);
+        QuestionPageFragment questionPageFragment = new QuestionPageFragment();
+        questionPageFragment.setContext(context);
+        questionPageFragment.setViewPager(mCustomViewPager);
+        questionPageFragment.setDBHelper(db);
         Bundle data = new Bundle();
         data.putSerializable(QuestionPageFragment.KEY, questionItemModel.get(position));
         questionPageFragment.setArguments(data);

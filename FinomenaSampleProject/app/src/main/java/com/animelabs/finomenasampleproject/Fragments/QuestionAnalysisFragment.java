@@ -46,7 +46,11 @@ public class QuestionAnalysisFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    public QuestionAnalysisFragment(Context context){
+    public QuestionAnalysisFragment(){
+
+    }
+
+    public void setContext(Context context){
         this.context = context;
     }
 }

@@ -31,10 +31,8 @@ public class HomeFragment extends Fragment {
     //Just to show DB Operations
     private ArrayList<QuestionItemModel> mQuestionItemModelArrayListDb;
     private DatabaseHelper db;
-    public HomeFragment(Context context, FragmentManager fragmentManager)
+    public HomeFragment()
     {
-        this.context = context;
-        this.fragmentManager = fragmentManager;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,13 @@ public class HomeFragment extends Fragment {
         initialiseDatabaseAndProceed();
 
     }
+    public void setFragmentManager(FragmentManager fm){
+        this.fragmentManager = fm;
+    }
 
+    public void setContext(Context context){
+        this.context = context;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

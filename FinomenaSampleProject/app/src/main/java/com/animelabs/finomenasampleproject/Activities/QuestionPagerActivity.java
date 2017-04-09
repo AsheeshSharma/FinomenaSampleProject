@@ -34,10 +34,13 @@ public class QuestionPagerActivity extends FragmentActivity {
         setContentView(R.layout.home_screen_layout);
         FragmentManager fragmentManager = getSupportFragmentManager();
         if(getIntent().getBooleanExtra(SplashActivity.ISGRAPHFRAG, false)){
-            GraphAnalysisFragment getStartedFragment = new GraphAnalysisFragment(QuestionPagerActivity.this);
+            GraphAnalysisFragment getStartedFragment = new GraphAnalysisFragment();
+            getStartedFragment.setContext(QuestionPagerActivity.this);
             changeFragment(getStartedFragment);
         }else {
-            GetStartedFragment getStartedFragment = new GetStartedFragment(QuestionPagerActivity.this, fragmentManager);
+            GetStartedFragment getStartedFragment = new GetStartedFragment();
+            getStartedFragment.setContext(QuestionPagerActivity.this);
+            getStartedFragment.setFragmentManager(fragmentManager);
             changeFragment(getStartedFragment);
         }
 
